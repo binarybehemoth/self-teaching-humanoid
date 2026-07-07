@@ -1,0 +1,18 @@
+# Bring up the whole system in simulation: the back-end API, the static front-end
+# surfaces (studio, marketplace, dashboard), and a simulated robot — on one machine.
+#
+#   docker compose up
+#
+# Then open:
+#   Teaching studio   -> http://localhost:8000/studio
+#   Skill marketplace -> http://localhost:8000/market
+#   Fleet dashboard   -> http://localhost:8000/fleet-ui
+#
+# The pure-Python examples/ need no containers and no dependencies:
+#   python3 examples/end_to_end/clear_a_table.py
+services:
+  platform:
+    build: .
+    ports:
+      - "8000:8000"
+    command: python3 -m backend.app

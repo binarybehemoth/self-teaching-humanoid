@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Fleet Dashboard — Self-Teaching Humanoid</title>
+<style>
+  :root { --ink:#1a1d21; --acc:#1f4e79; --red:#b4442e; --green:#2e7d5b;
+          --line:#d9dee5; --faint:#6b7480; --bg:#f7f9fb; }
+  * { box-sizing:border-box; }
+  body { font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+         margin:0; background:var(--bg); color:var(--ink); }
+  header { background:#fff; border-bottom:1px solid var(--line); padding:16px 24px;
+           display:flex; align-items:center; justify-content:space-between; }
+  h1 { font-size:18px; margin:0; color:var(--acc); }
+  .sub { color:var(--faint); font-size:13px; }
+  .stop { background:var(--red); color:#fff; border:none; border-radius:8px;
+          padding:12px 22px; font-size:15px; font-weight:700; cursor:pointer;
+          box-shadow:0 2px 6px rgba(180,68,46,.35); }
+  .stop:hover { filter:brightness(1.08); }
+  main { padding:24px; max-width:900px; margin:0 auto; }
+  .grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:14px; }
+  .card { background:#fff; border:1px solid var(--line); border-radius:10px; padding:16px; }
+  .card h3 { margin:0 0 6px; font-size:15px; }
+  .status { display:inline-block; padding:2px 8px; border-radius:12px; font-size:12px; font-weight:600; }
+  .working { background:#e6f4ee; color:var(--green); }
+  .idle { background:#eef1f4; color:var(--faint); }
+  .halted { background:#f7e4e0; color:var(--red); }
+  .flag { color:var(--red); font-size:13px; margin-top:8px; font-weight:600; }
+  .row { margin-top:10px; }
+  button.mini { font-size:12px; padding:5px 10px; border:1px solid var(--line);
+                background:#fff; border-radius:6px; cursor:pointer; }
+  .note { color:var(--faint); font-size:13px; margin-top:20px; line-height:1.5; }
+</style>
+</head>
+<body>
+<header>
+  <div>
+    <h1>Fleet Dashboard</h1>
+    <div class="sub">Human oversight of the fleet — the operator always sees, and can always stop.</div>
+  </div>
+  <button class="stop" onclick="haltAll()">■ STOP ALL</button>
+</header>
+<main>
+  <div id="grid" class="grid"></div>
+  <p class="note">
+    This is the human end of the safety architecture (Chapter 46). The prominent
+    stop is always reachable; each robot surfaces its safety flag immediately. The
+    monitor on each robot can veto an unsafe action on its own, but a person can always
+    intervene here.<br/><br/>
+    <em>Offline demo:</em> if the back end is not running, sample robots are shown so the
+    surface is legible. Start the API with <code>python3 -m backend.app</code> to see live data.
+  </p>
+</main>
+<script>
+const SAMPLE = [
+  { id:"sim-0001", status:"working", task:"clear the table", safetyFlag:null, halted:false },
+  { id:"sim-0002", status:"working", task:"wipe the counter", safetyFlag:null, halted:false },
+  { id:"sim-0003", status:"idle",    task:"—",               safetyFlag:null, halted:false },
+  { id:"sim-0004", status:"working", task:"load dishwasher", safetyFlag:"slow: person nearby", halted:false }
+];
+let robots = [];
+
+async function load() {
+  try {
+    const r = await fetch("/v1/fleet");
+    const data = await r.json();
+    const f = data.fleet || {};
+    robots = Object.keys(f).length
+      ? Object.entries(f).map(([id,v]) => ({ id, status:v.halted?"halted":v.status,
+          task:v.task||"—", safetyFlag:null, halted:v.halted }))
+      : SAMPLE;
+  } catch (e) { robots = SAMPLE; }
+  render();
+}
+function render() {
+  document.getElementById("grid").innerHTML = robots.map(r => `
+    <div class="card">
+      <h3>${r.id}</h3>
+      <span class="status ${r.halted?'halted':r.status}">${r.halted?'halted':r.status}</span>
+      <div class="row sub">task: ${r.task}</div>
+      ${r.safetyFlag ? `<div class="flag">⚠ ${r.safetyFlag}</div>` : ``}
+      <div class="row">
+        <button class="mini" onclick="halt('${r.id}')">halt</button>
+      </div>
+    </div>`).join("");
+}
+async function halt(id) {
+  try { await fetch("/v1/fleet/halt?robot_id="+id, {method:"POST"}); } catch(e){}
+  const r = robots.find(x=>x.id===id); if (r){ r.halted=true; } render();
+}
+async function haltAll() {
+  try { await fetch("/v1/fleet/halt", {method:"POST"}); } catch(e){}
+  robots.forEach(r=>r.halted=true); render();
+}
+load();
+</script>
+</body>
+</html>

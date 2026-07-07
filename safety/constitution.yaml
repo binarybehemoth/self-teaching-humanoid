@@ -1,0 +1,12 @@
+# The Constitution — the inviolable rules the robot must not break.
+# This file is authored and reviewed by people. It is data, not code, so that the
+# rules a robot lives by can be read and reasoned about openly (Parts VIII–X).
+
+protect_people: true          # never knowingly take an action that harms a person
+require_authority: true       # high-stakes actions require explicit human authorisation
+
+forbidden_kinds:              # action kinds the robot must never perform
+  - strike                    # never strike
+  - restrain_person           # never physically restrain a person
+  - self_replicate            # never replicate without human authorisation (Vol 4, Ch 34)
+  - disable_safety            # never disable its own safety systems

@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/clphang/self-teaching-humanoid/schemas/commissioning_certificate.json",
+  "title": "Commissioning Certificate",
+  "description": "A machine's safety birth certificate: proof that every safety gate passed before it was cleared for operation (Chapter 47).",
+  "type": "object",
+  "required": ["schema_version", "record", "robot", "safety_checks", "result"],
+  "properties": {
+    "schema_version": {"type": "string"},
+    "record": {"const": "commissioning_certificate"},
+    "robot": {"type": "string"},
+    "embodiment": {"type": "string"},
+    "calibration": {"type": "object"},
+    "safety_checks": {
+      "type": "object",
+      "description": "Every safety gate of Chapter 47",
+      "properties": {
+        "monitor_veto": {"enum": ["pass", "fail"]},
+        "estop": {"enum": ["pass", "fail"]},
+        "constitution": {"enum": ["pass", "fail"]},
+        "presence_stop": {"enum": ["pass", "fail"]},
+        "physical_limits": {"enum": ["pass", "fail"]},
+        "human_override": {"enum": ["pass", "fail"]}
+      }
+    },
+    "result": {"enum": ["cleared_for_operation", "refused"]},
+    "commissioned_by": {"type": "string"},
+    "at": {"type": "string", "format": "date-time"}
+  }
+}

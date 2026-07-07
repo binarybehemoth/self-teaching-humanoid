@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/clphang/self-teaching-humanoid/schemas/capability_descriptor.json",
+  "title": "Standard Capability Descriptor",
+  "description": "A robot's embodiment, sensors, and safety systems, presented to the ecosystem so skills can negotiate compatibility (Parts XV–XVII).",
+  "type": "object",
+  "required": ["embodiment", "arms", "reach_m", "sensors", "safety"],
+  "properties": {
+    "embodiment": {"type": "string"},
+    "arms": {"type": "integer", "minimum": 0},
+    "reach_m": {"type": "number", "minimum": 0},
+    "sensors": {"type": "array", "items": {"type": "string"}},
+    "safety": {
+      "type": "object",
+      "description": "The required safety systems, verified at commissioning",
+      "required": ["monitor", "override", "constitution"],
+      "properties": {
+        "monitor": {"type": "boolean"},
+        "override": {"type": "boolean"},
+        "constitution": {"type": "boolean"}
+      }
+    }
+  }
+}

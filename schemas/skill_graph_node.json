@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/clphang/self-teaching-humanoid/schemas/skill_graph_node.json",
+  "title": "Skill-Graph Node",
+  "description": "A skill and its prerequisites in the skill graph (Parts XI–XIV).",
+  "type": "object",
+  "required": ["skill", "prerequisites"],
+  "properties": {
+    "skill": {"type": "string"},
+    "prerequisites": {"type": "array", "items": {"type": "string"}},
+    "competence": {"type": "object", "properties": {
+      "estimate": {"type": "number", "minimum": 0, "maximum": 1},
+      "uncertainty": {"type": "number", "minimum": 0, "maximum": 1}}}
+  }
+}

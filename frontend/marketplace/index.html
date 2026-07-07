@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Skill Marketplace — Self-Teaching Humanoid</title>
+<style>
+  :root { --ink:#1a1d21; --acc:#1f4e79; --gold:#b8860b; --green:#2e7d5b; --line:#d9dee5; --faint:#6b7480; --bg:#f7f9fb; }
+  * { box-sizing:border-box; }
+  body { font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif; margin:0; background:var(--bg); color:var(--ink); }
+  header { background:#fff; border-bottom:1px solid var(--line); padding:16px 24px; }
+  h1 { font-size:18px; margin:0; color:var(--acc); }
+  .sub { color:var(--faint); font-size:13px; }
+  main { padding:24px; max-width:760px; margin:0 auto; }
+  .search { width:100%; padding:11px 14px; border:1px solid var(--line); border-radius:10px; font-size:14px; margin-bottom:18px; }
+  .card { background:#fff; border:1px solid var(--line); border-radius:10px; padding:16px 18px; margin-bottom:12px; }
+  .card h3 { margin:0 0 4px; font-size:16px; }
+  .badge { display:inline-block; font-size:11px; font-weight:700; padding:2px 8px; border-radius:10px;
+           background:#e6f4ee; color:var(--green); margin-left:8px; }
+  .meta { color:var(--faint); font-size:13px; margin:6px 0; }
+  .deps { font-size:12px; color:var(--gold); }
+  button { background:var(--acc); color:#fff; border:none; border-radius:7px; padding:8px 16px; font-size:13px; font-weight:600; cursor:pointer; }
+  .note { color:var(--faint); font-size:13px; margin-top:20px; line-height:1.5; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Skill Marketplace</h1>
+  <div class="sub">Browse, install, and review skills — capability chosen as easily as an app (Parts XV–XVII).</div>
+</header>
+<main>
+  <input class="search" id="q" placeholder="Search skills (e.g. 'clean', 'water', 'grasp')…" oninput="render()"/>
+  <div id="list"></div>
+  <p class="note">
+    Every skill shown has passed the trust layer's verification (Chapter 37) — the
+    ✓ Verified badge — and its tested competence and dependencies are surfaced plainly so
+    your choice is informed. Installation negotiates compatibility with your robot's body
+    via the standard layer.<br/><br/>
+    <em>Offline demo:</em> sample skills are shown; start the API for live listings.
+  </p>
+</main>
+<script>
+const SAMPLE = [
+  { name:"WipeSurface", effect:"the surface has been wiped clean", verified:true,
+    requires:{arms:1,reach_m:0.5}, dependencies:[], competence:0.94 },
+  { name:"WaterPlants", effect:"the plant has been watered", verified:true,
+    requires:{arms:1,reach_m:0.6}, dependencies:["Grasp","Pour"], competence:0.88 },
+  { name:"Grasp", effect:"the object is grasped", verified:true,
+    requires:{arms:1,reach_m:0.4}, dependencies:[], competence:0.97 },
+  { name:"LoadDishwasher", effect:"the dishwasher is loaded", verified:true,
+    requires:{arms:2,reach_m:0.7}, dependencies:["Grasp","OpenDoor"], competence:0.81 }
+];
+let skills = [];
+async function load() {
+  try {
+    const r = await fetch("/v1/skills");
+    const data = await r.json();
+    skills = (data.skills && data.skills.length) ? data.skills.map(s => ({
+      ...s, competence:(s.competence&&s.competence.estimate)||null })) : SAMPLE;
+  } catch(e) { skills = SAMPLE; }
+  render();
+}
+function render() {
+  const q = (document.getElementById("q").value||"").toLowerCase();
+  document.getElementById("list").innerHTML = skills
+    .filter(s => (s.name+s.effect).toLowerCase().includes(q))
+    .map(s => `
+      <div class="card">
+        <h3>${s.name} ${s.verified?'<span class="badge">✓ Verified</span>':''}</h3>
+        <div class="meta">${s.effect}</div>
+        <div class="meta">needs: ${s.requires.arms} arm(s), reach ${s.requires.reach_m} m
+          ${s.competence?` · tested competence ${Math.round(s.competence*100)}%`:''}</div>
+        ${s.dependencies&&s.dependencies.length?`<div class="deps">builds on: ${s.dependencies.join(", ")}</div>`:''}
+        <div style="margin-top:10px"><button onclick="alert('Install negotiates compatibility with your robot (standard layer). See platform/marketplace.py')">Install</button></div>
+      </div>`).join("");
+}
+load();
+</script>
+</body>
+</html>

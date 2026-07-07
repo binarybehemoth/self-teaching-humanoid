@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/clphang/self-teaching-humanoid/schemas/replication_authorisation.json",
+  "title": "Replication-Authorisation Record",
+  "description": "A human-authorised, bounded replication (Chapter 34). Replication is NEVER self-initiated: it requires explicit human authority, inherits immutable safety, and is hard-capped.",
+  "type": "object",
+  "required": ["schema_version", "record", "authorised_by", "hard_cap", "inherits_safety"],
+  "properties": {
+    "schema_version": {"type": "string"},
+    "record": {"const": "replication_authorisation"},
+    "authorised_by": {"type": "string", "description": "The human granting authority"},
+    "hard_cap": {"type": "integer", "minimum": 0, "description": "Maximum copies permitted"},
+    "inherits_safety": {"const": true, "description": "Safety systems are inherited, immutable"},
+    "lineage_id": {"type": "string"},
+    "kill_switch": {"const": true},
+    "at": {"type": "string", "format": "date-time"}
+  }
+}

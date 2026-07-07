@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/clphang/self-teaching-humanoid/schemas/model_exchange.json",
+  "title": "Model-Exchange Record",
+  "description": "A skill or model traded robot-to-robot on the trading floor (Parts XV–XVII).",
+  "type": "object",
+  "required": ["schema_version", "record", "from_robot", "to_robot", "skill"],
+  "properties": {
+    "schema_version": {"type": "string"},
+    "record": {"const": "model_exchange"},
+    "from_robot": {"type": "string"},
+    "to_robot": {"type": "string"},
+    "skill": {"type": "string"},
+    "verified_before_trust": {"type": "boolean"},
+    "at": {"type": "string", "format": "date-time"}
+  }
+}
