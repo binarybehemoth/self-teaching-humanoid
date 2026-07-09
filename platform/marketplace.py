@@ -2,7 +2,7 @@
 platform/marketplace.py  —  The Skill Marketplace
 =================================================
 
-Where skills are published, discovered, and installed (Parts XV–XVII). Every skill passes
+Where skills are published, discovered, and installed. Every skill passes
 the trust layer's verification before anyone can install it, and installation is
 subject to capability negotiation via the standard layer.
 

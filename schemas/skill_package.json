@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://github.com/clphang/self-teaching-humanoid/schemas/skill_package.json",
   "title": "Skill Package / Dependency Record",
-  "description": "A composed skill and its dependency tree, with pinned versions and signed provenance for supply-chain security (Chapter 40).",
+  "description": "A composed skill and its dependency tree, with pinned versions and signed provenance for supply-chain security.",
   "type": "object",
   "required": ["schema_version", "name", "version", "dependencies"],
   "properties": {

@@ -3,7 +3,7 @@ backend/services/registry.py  —  Model Registry
 ===============================================
 
 The versioned store of skills and models — the source of truth for what a skill is
-and how well it works (Parts XV–XVII). A thin wrapper here over the in-memory marketplace.
+and how well it works. A thin wrapper here over the in-memory marketplace.
 """
 from __future__ import annotations
 

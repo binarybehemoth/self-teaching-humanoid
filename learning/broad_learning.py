@@ -2,7 +2,7 @@
 learning/broad_learning.py  —  Broad Learning
 =============================================
 
-Acquiring competence from many sources at once (Parts V–VII): human demonstration, other
+Acquiring competence from many sources at once: human demonstration, other
 robots, the robot's own experience, and imagination. This module illustrates the
 INTERFACE by which experience of every kind is turned into skill improvements; a real
 pipeline trains large models on large data.

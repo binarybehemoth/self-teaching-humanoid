@@ -3,7 +3,7 @@ backend/services/fleet.py  —  Fleet-Coordination Service
 ========================================================
 
 Allocates tasks across robots, tracks their health, and orchestrates updates and
-recalls (Parts XVIII–XX). Includes the always-available halt: one robot, a group, or all.
+recalls. Includes the always-available halt: one robot, a group, or all.
 """
 from __future__ import annotations
 

@@ -2,8 +2,8 @@
 platform/standard.py  —  The Standard Operating Layer
 =====================================================
 
-The common language that lets skills and robots of different makes work together
-(Parts XV–XVII). A robot advertises a capability descriptor; the standard layer negotiates
+The common language that lets skills and robots of different makes work together.
+A robot advertises a capability descriptor; the standard layer negotiates
 whether a given skill can run on a given body, declining transfers across
 unbridgeable gaps rather than shipping a skill that will fail.
 """

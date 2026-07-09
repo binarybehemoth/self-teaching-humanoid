@@ -4,7 +4,7 @@ safety/constitution.py  —  The Constitution
 
 A small, inspectable set of rules the robot must not break, loaded from a
 human-authored file (`constitution.yaml`). The constitution encodes the
-inviolable commitments of Parts VIII–X: protect people, obey legitimate human
+inviolable commitments: protect people, obey legitimate human
 authority, and never take an action of a forbidden kind.
 
 The constitution is data, not code, so that the rules a robot lives by can be

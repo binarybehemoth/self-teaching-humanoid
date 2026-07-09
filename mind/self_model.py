@@ -2,11 +2,11 @@
 mind/self_model.py  —  The Self-Model
 =====================================
 
-The robot's honest, uncertain estimate of its own competence (Parts VIII–X). A new skill
+The robot's honest, uncertain estimate of its own competence. A new skill
 begins with a LOW and UNCERTAIN estimate; the estimate rises only as the skill is
 proven, per skill and per setting. This is what makes the robot act cautiously on
 things it has not yet earned confidence in — and what lets it know the boundary of
-what it can do (Parts XI–XIV).
+what it can do.
 
 Trust is never granted wholesale; it is accumulated from evidence.
 """

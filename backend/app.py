@@ -2,10 +2,10 @@
 backend/app.py  —  The API Gateway
 ==================================
 
-One authenticated, accountable interface to the back-end services (Chapter 45).
+One authenticated, accountable interface to the back-end services.
 Robots, the front-end surfaces, and developers all interact with the back end through
 this single API. Every request is authenticated, authorised, and logged, and its
-messages are the schemas of the series (see schemas/).
+messages are the shared schemas (see schemas/).
 
 Run with:   python3 -m backend.app        (serves API + static front ends on :8000)
        or:   uvicorn backend.app:app --reload

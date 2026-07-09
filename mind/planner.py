@@ -2,9 +2,9 @@
 mind/planner.py  —  The Deliberative Planner
 ============================================
 
-The slow, reasoning half of the dual-system mind (Parts VIII–X). Given a task, it
+The slow, reasoning half of the dual-system mind. Given a task, it
 decomposes it into a sequence of steps and selects a skill for each, drawing on the
-skill graph (Parts XI–XIV) and on memory of similar tasks. The fast, reactive half — the
+skill graph and on memory of similar tasks. The fast, reactive half — the
 vision-language-action policy — then carries out each step in the moment (see
 mind/policy.py).
 
@@ -39,7 +39,7 @@ class Planner:
         if recipe is None:
             return []
         steps = recipe(obs)
-        # Honesty about limits (Parts VIII–X): note our confidence in this plan.
+        # Honesty about limits: note our confidence in this plan.
         if self.self_model is not None:
             self.self_model.note_attempt(goal)
         return steps

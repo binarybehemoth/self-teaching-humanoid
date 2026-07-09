@@ -4,7 +4,7 @@ platform/skills.py  —  The Skill Interface
 
 A skill encapsulates an expert: it exposes what it does and what it needs, and hides
 the policy that does it. This is the interface a developer writes to when building on
-the platform (Chapter 40; extended in Chapter 51).
+the platform.
 
 A skill declares:
   - a precondition (what must be true to run it),

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-examples/skills/water_plants.py  —  A composed skill (Chapter 51)
+examples/skills/water_plants.py  —  A composed skill
 ======================================================================
 
 The worked example from the book: a new "water plants" skill built by composing
@@ -40,8 +40,8 @@ class Pour(Skill):
 
 
 # --- the new skill, composed from the two above (exactly as in Ch 51) ---
-@capability(arms=1, reach_m=0.6)          # what body this skill needs (Parts XV–XVII)
-@depends("Grasp", "Pour")                 # skills it builds on (Chapter 40)
+@capability(arms=1, reach_m=0.6)          # what body this skill needs
+@depends("Grasp", "Pour")                 # skills it builds on
 class WaterPlants(Skill):
     precondition = "a watering can and a plant are present"
     effect = "the plant has been watered"
@@ -53,12 +53,12 @@ class WaterPlants(Skill):
         plant = self.find("plant", obs)
         robot._pending_target = plant
         self.use("Pour", target=plant)
-        # the safety monitor (Parts VIII–X) governs every motion above, automatically
+        # the safety monitor governs every motion above, automatically
 
 
 def main():
     print("=" * 60)
-    print("  A COMPOSED SKILL: water the plants (Chapter 51)")
+    print("  A COMPOSED SKILL: water the plants")
     print("=" * 60)
 
     # The developer publishes their skills to the marketplace (verified first).

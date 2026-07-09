@@ -2,9 +2,9 @@
 body/hardware_abstraction.py  —  The Hardware-Abstraction Layer
 ==============================================================
 
-The clean interface between the software above and the hardware below (Parts I–IV).
+The clean interface between the software above and the hardware below.
 The mind and skills speak to *this* interface; a manufacturer supporting a new robot
-implements it for their machine (Chapter 51), so that every existing skill runs
+implements it for their machine, so that every existing skill runs
 on the new body unchanged.
 
 `SimRobot` is one implementation (in software). A real robot's implementation would

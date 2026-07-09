@@ -2,7 +2,7 @@
 platform/studio.py  —  The Teaching Studio
 ==========================================
 
-Where a person teaches a robot (Parts XV–XVII). A teaching contribution carries what was
+Where a person teaches a robot. A teaching contribution carries what was
 taught, by whom, and on what — with consent and provenance. This illustrates the
 interface; the studio is a front-end surface backed by the training service.
 """

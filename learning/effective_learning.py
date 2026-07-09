@@ -2,7 +2,7 @@
 learning/effective_learning.py  —  Effective Learning
 =====================================================
 
-The self-improving learner (Parts XI–XIV): it organises its skills (skill graph),
+The self-improving learner: it organises its skills (skill graph),
 practises in imagination, sets its own curriculum toward the frontier, and learns from
 failure by editing the skill graph. This module illustrates the loop; the reasoning is
 kept simple and transparent.
@@ -17,11 +17,11 @@ class EffectiveLearning:
         self.self_model = self_model
 
     def next_curriculum(self, known: set[str]) -> list[str]:
-        """Propose the next skills to learn — the frontier (Parts XI–XIV)."""
+        """Propose the next skills to learn — the frontier."""
         return self.graph.frontier(known)
 
     def learn_from_failure(self, skill: str, known: set[str]) -> str:
-        """Diagnose a failure into a missing prerequisite and target it (Parts XI–XIV)."""
+        """Diagnose a failure into a missing prerequisite and target it."""
         ok, missing = self.graph.can_learn(skill, known)
         if missing:
             return f"failure on '{skill}' traced to missing prerequisite(s): {missing}"

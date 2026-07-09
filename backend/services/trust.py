@@ -3,7 +3,7 @@ backend/services/trust.py  —  The Trust-and-Safety Service
 =========================================================
 
 Verifies, sandboxes, and (when needed) recalls skills — the ecosystem-scale safety
-layer (Parts XV–XVII). Every skill is verified before it can be installed anywhere, and a
+layer. Every skill is verified before it can be installed anywhere, and a
 harmful skill can be traced through provenance and withdrawn from every robot that
 installed it.
 

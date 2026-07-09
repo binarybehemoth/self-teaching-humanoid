@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://github.com/clphang/self-teaching-humanoid/schemas/teaching_contribution.json",
   "title": "Teaching Contribution",
-  "description": "What was taught, by whom, on what — with consent and provenance (Parts XV–XVII).",
+  "description": "What was taught, by whom, on what — with consent and provenance.",
   "type": "object",
   "required": ["schema_version", "record", "teacher", "skill", "modality", "consent"],
   "properties": {

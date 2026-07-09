@@ -10,7 +10,7 @@ catches an unsafe command whatever its origin: a flawed plan from the mind, a ba
 skill from the marketplace, or an errant learned behaviour. It does not need to know
 *which* layer erred; it checks the action itself, at the last gate before the world.
 
-This is a faithful illustration of the design described in Parts VIII–X. A safety system
+This is a faithful illustration of the design described in the book. A safety system
 for a physical robot operating among real people requires validation, testing, and
 assurance far beyond what this scaffold provides. Treat it accordingly.
 """

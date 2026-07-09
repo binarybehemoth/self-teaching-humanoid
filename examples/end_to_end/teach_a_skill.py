@@ -3,7 +3,7 @@
 examples/end_to_end/teach_a_skill.py  —  Teach, publish, install, use
 =====================================================================
 
-The platform loop of Parts XV–XVII, end to end: a person teaches a skill in the studio, it
+The platform loop end to end: a person teaches a skill in the studio, it
 is published to the marketplace (verified first), another robot installs it, and uses
 it — with credit and provenance recorded along the way.
 
@@ -30,7 +30,7 @@ class WipeSurface(Skill):
 
 def main():
     print("=" * 62)
-    print("  TEACH -> PUBLISH -> INSTALL -> USE  (Parts XV–XVII, end to end)")
+    print("  TEACH -> PUBLISH -> INSTALL -> USE  (end to end)")
     print("=" * 62)
 
     trust = TrustService()

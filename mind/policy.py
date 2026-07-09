@@ -2,7 +2,7 @@
 mind/policy.py  —  The Reactive Policy (Vision-Language-Action)
 ==============================================================
 
-The fast, in-the-moment half of the dual-system mind (Parts VIII–X). A vision-language-
+The fast, in-the-moment half of the dual-system mind. A vision-language-
 action (VLA) policy maps perception and instruction directly to motor action. Where
 the planner decides *what* to do, the policy decides *how*, moment to moment.
 

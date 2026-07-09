@@ -3,7 +3,7 @@ body/sim_robot.py  —  A Simulated Robot
 =======================================
 
 A pure-Python simulated humanoid, so the whole system can be run and understood on
-one computer without any hardware or external packages (Chapter 50).
+one computer without any hardware or external packages.
 
 The same interface is implemented by the ROS 2 hardware-abstraction layer for a real
 machine (see body/hardware_abstraction.py), so the code that drives this simulated

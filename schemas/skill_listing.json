@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://github.com/clphang/self-teaching-humanoid/schemas/skill_listing.json",
   "title": "Marketplace Skill Listing",
-  "description": "A skill offered for exchange on the marketplace (Parts XV–XVII).",
+  "description": "A skill offered for exchange on the marketplace.",
   "type": "object",
   "required": ["schema_version", "name", "effect", "precondition", "requires", "verified"],
   "properties": {

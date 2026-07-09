@@ -2,7 +2,7 @@
 mind/memory.py  —  Memory
 =========================
 
-What the robot retains and recalls across tasks (Parts VIII–X). A minimal episodic store:
+What the robot retains and recalls across tasks. A minimal episodic store:
 the planner and self-model draw on it to act with context rather than from scratch.
 """
 from __future__ import annotations

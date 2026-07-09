@@ -2,7 +2,7 @@
 learning/skill_graph.py  —  The Skill Graph
 ===========================================
 
-The organised map of a robot's skills and their prerequisites (Parts XI–XIV). Learning is
+The organised map of a robot's skills and their prerequisites. Learning is
 structured through this graph: a skill can be acquired once its prerequisites are, and
 a failure can be diagnosed into a missing or weak prerequisite.
 """
@@ -26,7 +26,7 @@ class SkillGraph:
 
     def frontier(self, known: set[str]) -> list[str]:
         """Skills whose prerequisites are all met but which are not yet known —
-        the frontier a self-set curriculum aims at (Parts XI–XIV)."""
+        the frontier a self-set curriculum aims at."""
         out = []
         for skill in self._deps:
             if skill not in known:

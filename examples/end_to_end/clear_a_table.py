@@ -9,7 +9,7 @@ This ties every layer of the book together on a single task: clearing a table.
 
 It also demonstrates the safety monitor doing its job: when a person is close, an
 unsafe motion is VETOED before it reaches the actuators — the guarantee at the seam
-between decision and motion (Parts VIII–X).
+between decision and motion.
 
 Runs with the Python standard library alone. No hardware, no external packages.
 
@@ -32,12 +32,12 @@ def run_task(robot, planner, policy, self_model, memory, goal, scene):
     world = robot.perceive(scene)
     robot.set_world(world)
 
-    # 1. PLAN (deliberative system, Parts VIII–X) — decompose the goal into skill steps
+    # 1. PLAN (deliberative system) — decompose the goal into skill steps
     steps = planner.plan(goal, world)
     print(f"PLAN: {[ (s.skill, s.target) for s in steps ]}")
 
     # 2. ACT — the reactive policy carries out each step; every motion is
-    #    gated by the safety monitor inside the body (Parts VIII–X).
+    #    gated by the safety monitor inside the body.
     robot.trace.clear()
     all_ok = True
     for step in steps:
@@ -46,7 +46,7 @@ def run_task(robot, planner, policy, self_model, memory, goal, scene):
     for line in robot.trace:
         print(line)
 
-    # 3. LEARN (effective learning, Parts XI–XIV) — update competence and remember
+    # 3. LEARN (effective learning) — update competence and remember
     outcome = "success" if all_ok else "partial (a step was safely blocked)"
     self_model.record_outcome("clear the table", success=all_ok)
     memory.remember(goal, steps, outcome)
@@ -57,15 +57,15 @@ def run_task(robot, planner, policy, self_model, memory, goal, scene):
 def main():
     banner("THE SELF-TEACHING HUMANOID — END TO END: clear a table")
 
-    # Assemble the system (each piece built in the parts noted).
+    # Assemble the system.
     override = HumanOverride()
     monitor = SafetyMonitor(Constitution.default(), override,
-                            max_force_n=40.0, max_speed_mps=1.0)   # Parts VIII–X
-    robot = SimRobot(monitor=monitor)                              # Parts I–IV
-    self_model = SelfModel()                                       # Parts VIII–X
-    memory = Memory()                                              # Parts VIII–X
-    planner = Planner(memory=memory, self_model=self_model)        # Parts VIII–X
-    policy = ReactivePolicy()                                      # Parts VIII–X
+                            max_force_n=40.0, max_speed_mps=1.0)   # safety
+    robot = SimRobot(monitor=monitor)                              # body
+    self_model = SelfModel()                                       # mind
+    memory = Memory()                                              # mind
+    planner = Planner(memory=memory, self_model=self_model)        # mind
+    policy = ReactivePolicy()                                      # mind
 
     # --- Run 1: a clear table, no people nearby. Everything proceeds. ---
     banner("Run 1 — table with a mug and a cup; no person nearby")
@@ -99,8 +99,8 @@ def main():
     print("\n  With the override engaged, NOTHING moves — the human's absolute stop.")
     override.release()
 
-    # --- What the robot learned about itself (Parts VIII–X, self-model). ---
-    banner("The robot's self-model (honest competence, Parts VIII–X)")
+    # --- What the robot learned about itself (self-model). ---
+    banner("The robot's self-model (honest competence)")
     for skill, c in self_model.report().items():
         print(f"  {skill:20s}  estimate={c['estimate']}  "
               f"uncertainty={c['uncertainty']}  attempts={c['attempts']}")

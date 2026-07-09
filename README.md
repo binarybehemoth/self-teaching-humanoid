@@ -16,19 +16,19 @@ itself, and does so in the open and in service of the people around it.
 
 ## The architecture, mirrored in the layout
 
-The repository is a monorepo whose top-level directories mirror the book's structure:
+The repository is a monorepo whose top-level directories mirror the system's architecture:
 
-| Directory     | Contains                                             | In the book        |
-|---------------|------------------------------------------------------|--------------------|
-| `body/`       | ROS 2 nodes and the hardware-abstraction layer       | Parts I–IV         |
-| `learning/`   | Broad- and effective-learning pipelines              | Parts V–VII, XI–XIV|
-| `mind/`       | Planner, policy, memory, and self-model              | Parts VIII–X       |
-| `safety/`     | Monitor, constitution, and human override            | Parts VIII–X       |
-| `platform/`   | Skill interface, marketplace, and standard layer     | Parts XV–XVII      |
-| `backend/`    | Services and the API gateway (FastAPI)               | Parts XVIII–XX     |
-| `frontend/`   | Studio, marketplace, and dashboard surfaces          | Parts XVIII–XX     |
-| `schemas/`    | Every JSON schema defined across the book            | throughout         |
-| `examples/`   | Runnable, end-to-end demonstrations                  | throughout         |
+| Directory     | Contains                                             |
+|---------------|------------------------------------------------------|
+| `body/`       | ROS 2 nodes and the hardware-abstraction layer       |
+| `learning/`   | Broad- and effective-learning pipelines              |
+| `mind/`       | Planner, policy, memory, and self-model              |
+| `safety/`     | Monitor, constitution, and human override            |
+| `platform/`   | Skill interface, marketplace, and standard layer     |
+| `backend/`    | Services and the API gateway (FastAPI)               |
+| `frontend/`   | Studio, marketplace, and dashboard surfaces          |
+| `schemas/`    | Every JSON schema defined across the book            |
+| `examples/`   | Runnable, end-to-end demonstrations                  |
 
 `safety/` is deliberately kept as its own first-class module. The whole system's
 trustworthiness rests on it, and it is meant to be changed only deliberately and with

@@ -2,7 +2,7 @@
 body/ros2_nodes/perception_node.py  —  ROS 2 perception node (stub)
 ===================================================================
 
-A stub illustrating how the body's sensing is exposed as a ROS 2 node (Parts I–IV).
+A stub illustrating how the body's sensing is exposed as a ROS 2 node.
 On a real robot this would subscribe to camera and depth topics, run perception, and
 publish a scene graph that the mind consumes. Left as a stub because it requires a
 ROS 2 installation (rclpy) and real sensors.

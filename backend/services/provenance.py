@@ -2,7 +2,7 @@
 backend/services/provenance.py  —  Data & Provenance Service
 ============================================================
 
-Keeps the records, lineage, and consent that make the system auditable (Parts XV–XVII).
+Keeps the records, lineage, and consent that make the system auditable.
 Because every important event leaves a structured record, the system's behaviour can
 be reconstructed and accounted for — the precondition for assigning responsibility.
 """
